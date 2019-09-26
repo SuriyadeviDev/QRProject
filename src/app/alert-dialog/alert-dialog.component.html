@@ -1,0 +1,60 @@
+<div class="alert-wrapper">
+
+    <div *ngIf="data && data.type===types.ALERT">
+        <div class="text-align-center">
+            <div>
+                <img src="../assets/images/svg/alert.svg" class="alert_icon">
+            </div>
+            <div class="fontSize14px fontColor39404b margin_t14_b25">{{data.msg}}</div>
+        </div>
+        <div class="text-align-right">
+            <button mat-button class="blue_button md_button margin_right-10px" (click)="onClickClose()">CLOSE</button>
+        </div>
+    </div>
+    <div *ngIf="data && data.type===types.CONFIRM">
+        <div class="text-align-center">
+            <div>
+                <img src="../assets/images/svg/alert.svg" class="alert_icon">
+            </div>
+            <div class="fontSize14px fontColor39404b margin_t14_b25">{{data.msg}}</div>
+        </div>
+        <div class="text-align-right">
+            <button mat-button class="blue_button md_button margin_right20px" (click)="onClickOk()">OK</button>
+            <button mat-button class="blue_button md_button" (click)="onClickClose()">CANCEL</button>
+        </div>
+    </div>
+    <div *ngIf="data && data.type===types.SUCCESS">
+        <div class="text-align-center">
+            <div>
+                <img src="../assets/images/svg/chek_green_tick.svg" class="alert_icon">
+            </div>
+            <div class="fontSize14px fontColor39404b margin_t14_b25">{{data.msg}}</div>
+        </div>
+        <div class="text-align-right">
+            <button mat-button class="blue_button md_button margin_right20px" (click)="onClickOk()">OK</button>
+            <button mat-button class="blue_button md_button" (click)="onClickClose()">CANCEL</button>
+        </div>
+    </div>
+    <div *ngIf="data && data.type===types.INFO">
+        <div class="text-align-center">
+            <div>
+                <img src="../assets/images/svg/chek_green_tick.svg" class="alert_icon">
+            </div>
+            <div class="fontSize14px fontColor39404b margin_t14_b25">{{data.msg}}</div>
+        </div>
+        <div class="text-align-right">
+            <button mat-button class="blue_button md_button" (click)="onClickOk()">OK</button>
+        </div>
+    </div>
+    <div *ngIf="data && data.type===types.WARN">
+        <div class="text-align-center">
+            <div>
+                <img src="../assets/images/svg/alert.svg" class="alert_icon">
+            </div>
+            <div class="fontSize14px fontColor39404b margin_t14_b25">{{data.msg}}</div>
+        </div>
+        <div class="text-align-right">
+            <button mat-button class="blue_button md_button" (click)="onClickOk()">OK</button>
+        </div>
+    </div>
+</div>

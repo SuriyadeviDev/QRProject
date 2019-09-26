@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" *ngIf="currentURL == '/kendoListing'">
+
+<body>
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3 sidenav">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a>Kendo Listing</a></li>
+          <li><a routerLink="/registerForm">Register</a></li>
+          <!-- <li><a href="#section3">Family</a></li>
+          <li><a href="#section3">Photos</a></li> -->
+        </ul><br>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Blog..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <h4> Kendo Grid List </h4>
+        <kendo-grid [data]="sampleGrid" (edit)="editHandler($event)" (save)="saveHandler($event)"
+          (remove)="removeHandler($event)" (add)="addHandler($event)">
+          <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+          </ng-template>
+          <kendo-grid-column title="S.No">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem"> 1
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="first_name" title="Name"></kendo-grid-column>
+          <kendo-grid-column field="last_name" title="Year"></kendo-grid-column>
+          <kendo-grid-column field="comments" title="Comments"></kendo-grid-column>
+          <kendo-grid-column field="eta" title="ETA(hours)"></kendo-grid-column>
+          <kendo-grid-column title="Options" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+              <button kendoGridEditCommand [primary]="true">Edit</button>
+              <button kendoGridSaveCommand [disabled]>Update</button>
+              <button kendoGridRemoveCommand>remove</button>
+            </ng-template>
+          </kendo-grid-column>
+        </kendo-grid>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

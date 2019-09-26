@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Deep Blue Admin</title>
+    <style>
+        div {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div>
+            <div class="row text-center">
+                <h2>New Registration</h2>
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()">
+                <div>
+                    <label for="firstname" class="col-md-2">
+                        First Name:
+                    </label>
+                    <div class="col-md-9 form-group">
+                        <input type="text" class="form-control" id="firstname" placeholder="Enter First Name"
+                            formControlName="firstName">
+                        <div *ngIf="formSubmit && (Rc.firstName.errors && Rc.firstName.errors.required)">First Name is
+                            required</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="lastname" class="col-md-2">
+                        Last Name:
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name"
+                            formControlName="lastName">
+                        <div *ngIf="formSubmit && (Rc.lastName.errors && Rc.lastName.errors.required)">Last Name is
+                            required</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="emailaddress" class="col-md-2">
+                        Email address:
+                    </label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" id="emailaddress" placeholder="Enter email address" formControlName="email">
+                        <p class="help-block">
+                            Example: yourname@domain.com
+                        </p>
+                    </div>
+                    <div class="col-md-1">
+                        <i class="fa fa-lock fa-2x"></i>
+                    </div>
+                </div>
+                <div>
+                    <label for="sex" class="col-md-2">
+                        Gender:
+                    </label>
+                    <div class="col-md-10">
+                        <label class="radio">
+                            <input type="radio" name="gender" id="sex" value="male" formControlName="gender">
+                            Male
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="gender" id="Radio1" value="female" formControlName="gender">
+                            Female
+                        </label>
+                        <div *ngIf="formSubmit && (Rc.gender.errors && Rc.gender.errors.required)">Please Select Gender
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="carno" class="col-md-2">
+                        Car No:
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="carno" placeholder="Car No" formControlName="carno">
+                    </div>
+                    <div *ngIf="formSubmit && (Rc.carno.errors && Rc.carno.errors.required)">Car No required
+                    </div>
+                </div>
+                <div>
+                    <label for="carmodel" class="col-md-2">
+                        Car Model:
+                    </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="carmodel" placeholder="Car Model"
+                            formControlName="carmodel">
+                    </div>
+                    <div *ngIf="formSubmit && (Rc.carmodel.errors && Rc.carmodel.errors.required)">Car Model required
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <label>
+                            <input type="checkbox" formControlName="terms">I hereby accept the terms and conditions for
+                            using this
+                            site</label>
+                        <div *ngIf="formSubmit && (Rc.terms.errors && Rc.terms.errors.required)">Need to Select</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-10">
+                        <button type="submit" class="btn btn-info">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ngx-qrcode [qrc-value]="value" qrc-class="aclass" qrc-errorCorrectionLevel="L">
+            </ngx-qrcode>
+            <a href="https://web.whatsapp.com/send?text=test" data-text="Take a look at this awesome website:"
+                class="wa_btn wa_btn_s">Share1</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
