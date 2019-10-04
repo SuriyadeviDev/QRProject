@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as jsPDF from 'jspdf';
+import { PwaServiceService } from '../pwa-service.service';
 
 
 @Component({
@@ -8,14 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public myAngularxQrCode: string = null;
-  public generateCode : string = null
+  @ViewChild('content', { static: true }) content: ElementRef;
+  public generateCode: string = null
   registerForm: FormGroup;
   formSubmit = false;
   elementType: 'url' | 'canvas' | 'img' = 'url';
   value: string = 'FirstName : Muthuvel, Email';
-  constructor(private formBuilder: FormBuilder) {
-    this.myAngularxQrCode = 'Your QR code data string';
+  fileName: string;
+  filePreview: string;
+  sanitizer: any;
+  constructor(private formBuilder: FormBuilder, public pwaService: PwaServiceService) {
   }
 
   get Rc() {
@@ -34,7 +38,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  public makeid(length) {
+  public makeid(length: any) {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
@@ -43,21 +47,40 @@ export class RegisterComponent implements OnInit {
     }
     return result;
   }
-  
+
 
   registerFormSubmit() {
-    if(this.registerForm.invalid) return;
+    if (this.registerForm.invalid)
+      return;
     const formValues = this.registerForm.value;
     this.formSubmit = true;
     this.generateCode = this.makeid(5);
-    // this.pwaService.login(formValues.username, formValues.password).subscribe(
+    localStorage.setItem('registerUser', JSON.stringify(formValues));
+    alert('Registerd Successfully');
+    // this.pwaService.RegisterSerive().subscribe( comment for cors error
     //   data => {
     //     if (data.token)
-    //       this.router.navigate(['/kendoListing']);
+    //       console.log('test');
     //   },
     //   error => {
     //     alert('Login UnSuccessful');
     //   });
   };
+
+
+  convertPDF() {
+    let doc = new jsPDF();
+    let cont = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+    let content = this.content.nativeElement;
+    doc.fromHTML(content.innerHTML, 15, 15, {
+      'width': 190,
+      'elementHandlers': cont
+    })
+    doc.save('test.pdf');
+  }
 
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Deep Blue Admin</title>
+    <style>
+        div {
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div>
+            <div class="row text-center">
+                <h2>Scan QR</h2>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-info" (click)="ScanQR()">
+        Scan QR
+    </button>
+    <zxing-scanner *ngIf="scanQR" #scanner class="test-class" start="true" [device]="selectedDevice"
+        (scanSuccess)="handleQrCodeResult($event)" cssClass="small-video"></zxing-scanner>
+    <p> Result {{qrResultString}}</p>
+</body>
+</html>
+<style>
+    .test-class {
+        width: 150px !important;
+    }
+</style>

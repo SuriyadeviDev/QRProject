@@ -12,15 +12,17 @@ export class AppComponent {
   title = 'Login Page';
   loginForm: FormGroup;
   formSubmit = false;
-  constructor(updates: SwUpdate, private pwaService:PwaServiceService, private formBuilder: FormBuilder, public router: Router){
+  constructor(updates: SwUpdate, private pwaService: PwaServiceService, private formBuilder: FormBuilder, public router: Router) {
     updates.available.subscribe(event => {
       updates.activateUpdate().then(() => document.location.reload());
     })
   }
+  // SuriyaDev
+  // Suriya@12345
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['SuriyaDev', Validators.required],
-      password: ['Suriya@12345', Validators.required]
+      username: ['eve.holt@reqres.in', Validators.required],
+      password: ['cityslicka@12345', Validators.required]
     });
   }
 
@@ -30,9 +32,10 @@ export class AppComponent {
   onSubmit() {
     const formValues = this.loginForm.value;
     this.formSubmit = true;
-    this.pwaService.login(formValues.username, formValues.password).subscribe(
+    // formValues.username, formValues.password
+    this.pwaService.login(formValues).subscribe(
       data => {
-        if (data)
+        if (data.token)
           this.router.navigate(['/kendoListing']);
       },
       error => {

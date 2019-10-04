@@ -46,7 +46,8 @@
                         Email address:
                     </label>
                     <div class="col-md-9">
-                        <input type="email" class="form-control" id="emailaddress" placeholder="Enter email address" formControlName="email">
+                        <input type="email" class="form-control" id="emailaddress" placeholder="Enter email address"
+                            formControlName="email">
                         <p class="help-block">
                             Example: yourname@domain.com
                         </p>
@@ -114,13 +115,16 @@
                     </div>
                 </div>
             </form>
-            <ngx-qrcode [qrc-value]="value" qrc-class="aclass" qrc-errorCorrectionLevel="L">
+            <ngx-qrcode *ngIf="formSubmit" [qrc-value]="generateCode" qrc-class="aclass" qrc-errorCorrectionLevel="L" id="content" #content >
             </ngx-qrcode>
             <a href="https://web.whatsapp.com/send?text=test" data-text="Take a look at this awesome website:"
                 class="wa_btn wa_btn_s">Share1</a>
         </div>
     </div>
 
+    <button (click)="convertPDF()" class="btn btn-info">
+        Convert PDF
+    </button>
 </body>
 
 </html>

@@ -16,6 +16,8 @@ import{MatDialogModule} from '@angular/material'
 import { from } from 'rxjs';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { RegisterComponent } from './register/register.component';
+import { ScanQRComponent } from './scan-qr/scan-qr.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     KendoListingComponent,
     AlertDialogComponent,
-    RegisterComponent
+    RegisterComponent,
+    ScanQRComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     NgxQRCodeModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ZXingScannerModule
   ],
   providers: [PwaServiceService],
   bootstrap: [AppComponent]
