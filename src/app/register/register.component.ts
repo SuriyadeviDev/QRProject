@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as jsPDF from 'jspdf';
 import { PwaServiceService } from '../pwa-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
   fileName: string;
   filePreview: string;
   sanitizer: any;
-  constructor(private formBuilder: FormBuilder, public pwaService: PwaServiceService) {
+  constructor(private formBuilder: FormBuilder, public pwaService: PwaServiceService, public router: Router) {
   }
 
   get Rc() {
@@ -50,13 +51,13 @@ export class RegisterComponent implements OnInit {
 
 
   registerFormSubmit() {
+    this.formSubmit = true;
     if (this.registerForm.invalid)
       return;
     const formValues = this.registerForm.value;
-    this.formSubmit = true;
     this.generateCode = this.makeid(5);
     localStorage.setItem('registerUser', JSON.stringify(formValues));
-    alert('Registerd Successfully');
+     alert('Registerd Successfully');
     // this.pwaService.RegisterSerive().subscribe( comment for cors error
     //   data => {
     //     if (data.token)

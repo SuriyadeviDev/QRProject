@@ -51,6 +51,8 @@
                         <p class="help-block">
                             Example: yourname@domain.com
                         </p>
+                        <div *ngIf="formSubmit && (Rc.email.errors && Rc.email.errors.required)">Email Required
+                        </div>
                     </div>
                     <div class="col-md-1">
                         <i class="fa fa-lock fa-2x"></i>
@@ -79,9 +81,10 @@
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="carno" placeholder="Car No" formControlName="carno">
+                        <div *ngIf="formSubmit && (Rc.carno.errors && Rc.carno.errors.required)">Car No required
+                        </div>
                     </div>
-                    <div *ngIf="formSubmit && (Rc.carno.errors && Rc.carno.errors.required)">Car No required
-                    </div>
+                    
                 </div>
                 <div>
                     <label for="carmodel" class="col-md-2">
@@ -90,8 +93,8 @@
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="carmodel" placeholder="Car Model"
                             formControlName="carmodel">
-                    </div>
-                    <div *ngIf="formSubmit && (Rc.carmodel.errors && Rc.carmodel.errors.required)">Car Model required
+                            <div *ngIf="formSubmit && (Rc.carmodel.errors && Rc.carmodel.errors.required)">Car Model required
+                            </div>
                     </div>
                 </div>
                 <div>
@@ -117,14 +120,16 @@
             </form>
             <ngx-qrcode *ngIf="formSubmit" [qrc-value]="generateCode" qrc-class="aclass" qrc-errorCorrectionLevel="L" id="content" #content >
             </ngx-qrcode>
-            <a href="https://web.whatsapp.com/send?text=test" data-text="Take a look at this awesome website:"
-                class="wa_btn wa_btn_s">Share1</a>
+            <!-- <a href="https://web.whatsapp.com/send?text=test" data-text="Take a look at this awesome website:"
+                class="wa_btn wa_btn_s">Share1</a> -->
+                <button type="submit" class="btn btn-info"><a routerLink="/kendoListing">Home Page</a></button>
         </div>
     </div>
 
-    <button (click)="convertPDF()" class="btn btn-info">
+    <!-- <button (click)="convertPDF()" class="btn btn-info">
         Convert PDF
-    </button>
+    </button> -->
+   
 </body>
 
 </html>

@@ -26,6 +26,7 @@
     <zxing-scanner *ngIf="scanQR" #scanner class="test-class" start="true" [device]="selectedDevice"
         (scanSuccess)="handleQrCodeResult($event)" cssClass="small-video"></zxing-scanner>
     <p> Result {{qrResultString}}</p>
+    <button type="submit" class="btn btn-info"><a routerLink="/kendoListing">Home Page</a></button>
 </body>
 </html>
 <style>
