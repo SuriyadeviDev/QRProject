@@ -25,9 +25,9 @@
         <h4> Kendo Grid List </h4>
         <kendo-grid [data]="sampleGrid" (edit)="editHandler($event)" (save)="saveHandler($event)"
           (remove)="removeHandler($event)" (add)="addHandler($event)">
-          <ng-template kendoGridToolbarTemplate>
+          <!-- <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
-          </ng-template>
+          </ng-template> -->
           <kendo-grid-column title="S.No">
             <ng-template kendoGridCellTemplate let-dataItem="dataItem"> 1
             </ng-template>

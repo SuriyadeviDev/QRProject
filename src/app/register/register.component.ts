@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   fileName: string;
   filePreview: string;
   sanitizer: any;
+  addArray: any;
   constructor(private formBuilder: FormBuilder, public pwaService: PwaServiceService, public router: Router) {
   }
 
@@ -56,7 +57,8 @@ export class RegisterComponent implements OnInit {
       return;
     const formValues = this.registerForm.value;
     this.generateCode = this.makeid(5);
-    localStorage.setItem('registerUser', JSON.stringify(formValues));
+    this.addArray.push(formValues);
+    localStorage.setItem('registerUser', JSON.stringify(this.addArray));
      alert('Registerd Successfully');
     // this.pwaService.RegisterSerive().subscribe( comment for cors error
     //   data => {
