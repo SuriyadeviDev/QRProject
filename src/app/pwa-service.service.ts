@@ -8,22 +8,19 @@ import { KendoListingComponent } from './kendo-listing/kendo-listing.component'
 export class PwaServiceService {
 
   constructor(public http: HttpClient, public dialog: MatDialog) { }
-  // login(username: string, password: string) {
-  //   return this.http.get<any>(`http://localhost:52457/api/login?username=`+ username +`&password=`+ password)
-  // }
   login(data) {
-    return this.http.post<any>(`https://reqres.in/api/login`, (data));
+    return this.http.post<any>(`http://localhost:3000/userVal`, (data));
   }
 
 
   kendoListing() {
-    return this.http.get<any>(`https://reqres.in/api/users`)
+    return this.http.get<any>(`http://localhost:3000/getTodos`)
   }
 
-  RegisterSerive() {
-    const data= 
-      {"FirstName":"Suriya","LastName":"Devi","CarNo":"TN-5678","CarModel":"Audi","Gender":"F","terms":true,"Email":"Suriya@gmail.com","QRCode":"WpOtR"}
-    return this.http.post<any>(`http://localhost:52457/api/Register`, (data));
+  RegisterSerive(data) {
+    // const data= 
+      // {"FirstName":"Suriya","LastName":"Devi","CarNo":"TN-5678","CarModel":"Audi","Gender":"F","terms":true,"Email":"Suriya@gmail.com","QRCode":"WpOtR"}
+     return this.http.post<any>(`http://localhost:3000/postTodos`, (data));
   }
 
   showAlert(msg: string, type: string, header?: string, okBtn?: string, cancelBtn?: string) {

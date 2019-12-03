@@ -21,8 +21,8 @@ export class AppComponent {
   // Suriya@12345
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['eve.holt@reqres.in', Validators.required],
-      password: ['cityslicka@12345', Validators.required]
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -35,7 +35,7 @@ export class AppComponent {
     // formValues.username, formValues.password
     this.pwaService.login(formValues).subscribe(
       data => {
-        if (data.token)
+        if (data.message == "Login Successfully")
           this.router.navigate(['/kendoListing']);
       },
       error => {

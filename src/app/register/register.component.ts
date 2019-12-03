@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   formSubmit = false;
   elementType: 'url' | 'canvas' | 'img' = 'url';
-  value: string = 'FirstName : Muthuvel, Email';
+  value: string = '';
   fileName: string;
   filePreview: string;
   sanitizer: any;
-  addArray: any;
+  addArray: any = [];
   constructor(private formBuilder: FormBuilder, public pwaService: PwaServiceService, public router: Router) {
   }
 
@@ -57,18 +57,20 @@ export class RegisterComponent implements OnInit {
       return;
     const formValues = this.registerForm.value;
     this.generateCode = this.makeid(5);
+    formValues.qrcode = this.generateCode;
     this.addArray.push(formValues);
-    localStorage.setItem('registerUser', JSON.stringify(this.addArray));
-     alert('Registerd Successfully');
-    // this.pwaService.RegisterSerive().subscribe( comment for cors error
-    //   data => {
-    //     if (data.token)
-    //       console.log('test');
-    //   },
-    //   error => {
-    //     alert('Login UnSuccessful');
-    //   });
+    this.pwaService.RegisterSerive(this.addArray).subscribe(
+      data => {
+        if (data.success)
+        alert('Saved Succeesfully');
+      },
+      error => {
+        alert('Login UnSuccessful');
+      });
   };
+
+  // localStorage.setItem('registerUser', JSON.stringify(this.addArray));
+    //  alert('Registerd Successfully');
 
 
   convertPDF() {

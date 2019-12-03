@@ -24,16 +24,10 @@ export class KendoListingComponent implements OnInit {
 
   ngOnInit() {
     this.currentURL = this.router.url;
-    //fromthis
-    // this.sampleGrid = localStorage.getItem('registerUser');
-    // this.sampleGrid.forEach((value, index) => {
-    //           value.id = index + 1;
-    //         });
-            //end
     this.pwaService.kendoListing().subscribe(
       result => {
-        if (result.data) {
-          this.sampleGrid = result.data;
+        if (result) {
+          this.sampleGrid = result;
           this.sampleGrid.forEach((value, index) => {
             value.id = index + 1;
           });
